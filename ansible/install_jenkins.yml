@@ -1,0 +1,59 @@
+---
+- name: Install Jenkins on Ubuntu
+  hosts: jenkins
+  become: yes
+  tasks:
+    - name: Update APT package cache
+      apt:
+        update_cache: yes
+      become: yes
+
+    - name: Install Java
+      apt:
+        name: openjdk-8-jdk
+        state: present
+      become: yes
+
+    - name: Add Jenkins APT repository key
+      apt_key:
+        url: https://pkg.jenkins.io/debian/jenkins.io.key
+      become: yes
+
+    - name: Add Jenkins APT repository
+      apt_repository:
+        repo: deb http://pkg.jenkins.io/debian-stable binary/
+        state: present
+      become: yes
+
+    - name: Update APT package cache again
+      apt:
+        update_cache: yes
+      become: yes
+
+    - name: Install Jenkins
+      apt:
+        name: jenkins
+        state: present
+      become: yes
+
+    - name: Start Jenkins service
+      systemd:
+        name: jenkins
+        state: started
+      become: yes
+
+    - name: Enable Jenkins service on boot
+      systemd:
+        name: jenkins
+        enabled: yes
+      become: yes
+
+    - name: Print initial Jenkins unlock key
+      command: "cat /var/lib/jenkins/secrets/initialAdminPassword"
+      register: jenkins_admin_password
+      become: yes
+      changed_when: false
+
+    - name: Display Jenkins unlock key
+      debug:
+        var: jenkins_admin_password.stdout_lines[0]
