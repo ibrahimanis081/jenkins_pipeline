@@ -9,7 +9,7 @@ pipeline {
 
     stage('Install') {
       steps {
-        dir(path: './app')
+        dir(path: 'app')
         sh 'pip install requirements.txt && python3 -m unittest test_app.py'
       }
     }
