@@ -9,7 +9,11 @@ pipeline {
 
     stage('Testing') {
       steps {
-        sh 'python3 -m unittest app/test_app.py'
+        sh 'cd app'
+        sh 'python3 -m venv .venv'
+        sh 'source .venv/bin/activate'
+        sh 'pip install -r requirements.txt'
+        sh 'python3 -m unittest test_app.py'
       }
     }
 
