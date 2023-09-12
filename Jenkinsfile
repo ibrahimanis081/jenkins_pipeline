@@ -9,7 +9,7 @@ pipeline {
 
     stage('Install') {
       steps {
-        sh 'pip install -r /var/lib/jenkins/workspace/jenkins_pipeline_main/app/requirements.txt'
+        sh 'pip install -r /var/lib/jenkins/workspace/jenkins_pipeline_main/app/requirements.txt && python3 /var/lib/jenkins/workspace/jenkins_pipeline_main/app/test_app.py'
       }
     }
 
