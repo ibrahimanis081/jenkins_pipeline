@@ -9,7 +9,7 @@ pipeline {
 
     stage('Testing') {
       steps {
-        sh 'cd app'
+        sh 'cd app && ls -la'
         sh 'pip install -r requirements.txt && python3 test_app.py && deactivate'
       }
     }
