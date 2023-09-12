@@ -10,7 +10,7 @@ pipeline {
     stage('Testing') {
       steps {
         sh 'cd app'
-        sh 'python3 -m venv myenv && source myenv/bin/activate && pip install -r requirements.txt && python test_app.py && deactivate'
+        sh 'pip install -r requirements.txt && python3 test_app.py && deactivate'
       }
     }
 
