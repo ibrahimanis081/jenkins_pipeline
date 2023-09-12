@@ -7,15 +7,18 @@ pipeline {
       }
     }
 
-    stage('Test') {
+    stage('Install') {
       steps {
-        sh 'python3 -m venv venv'
-        sh 'source venv/bin/activate'
         sh 'cd app'
         sh 'ls -la'
         sh 'pip install -r requirements.txt'
+      }
+    }
+
+    stage('Test') {
+      steps {
+        sh 'cd app'
         sh 'python3 test_app.py'
-        sh 'deactivate'
       }
     }
 
