@@ -9,7 +9,8 @@ pipeline {
 
     stage('Install') {
       steps {
-        sh 'pip install -r /var/lib/jenkins/workspace/jenkins_pipeline_main/app/requirements.txt && python3 /var/lib/jenkins/workspace/jenkins_pipeline_main/app/test_app.py'
+        dir(path: './app')
+        sh 'pip install requirements.txt && python3 -m unittest test_app.py'
       }
     }
 
@@ -17,6 +18,7 @@ pipeline {
       steps {
         sh 'cd app'
         sh 'python3 /var/lib/jenkins/workspace/jenkins_pipeline_main/app/test_app.py'
+        dir(path: './app')
       }
     }
 
