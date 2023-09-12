@@ -9,16 +9,14 @@ pipeline {
 
     stage('Install') {
       steps {
-        sh 'cd app && ls -la && pwd'
-        sh 'ls -la && pwd'
-        sh 'pip install -r requirements.txt'
+        sh 'pip install -r /var/lib/jenkins/workspace/jenkins_pipeline_main/app/requirements.txt'
       }
     }
 
     stage('Test') {
       steps {
         sh 'cd app'
-        sh 'python3 test_app.py'
+        sh 'python3 /var/lib/jenkins/workspace/jenkins_pipeline_main/app/test_app.py'
       }
     }
 
