@@ -9,7 +9,7 @@ pipeline {
 
     stage('Install') {
       steps {
-        sh 'cd app'
+        sh 'cd app && ls -la'
         sh 'ls -la'
         sh 'pip install -r requirements.txt'
       }
