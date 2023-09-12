@@ -7,5 +7,11 @@ pipeline {
       }
     }
 
+    stage('Testing') {
+      steps {
+        sh 'python3 -m unittest app/test_app.py'
+      }
+    }
+
   }
 }
