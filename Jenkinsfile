@@ -7,10 +7,11 @@ pipeline {
       }
     }
 
-    stage('Install') {
+    stage('Test App') {
       steps {
         dir(path: 'app') {
           sh 'ls -la'
+          sh 'python3 -m venv .venv && source .venv/bin/activate'
           sh '''pip install -r requirements.txt && python3 -m unittest test_app.py
 '''
         }
