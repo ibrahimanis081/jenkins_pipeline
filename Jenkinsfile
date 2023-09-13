@@ -11,9 +11,10 @@ pipeline {
       steps {
         dir(path: 'app') {
           sh 'ls -la'
+          sh '''pip install requirements.txt && python3 -m unittest test_app.py
+'''
         }
 
-        sh 'pip install requirements.txt && python3 -m unittest test_app.py'
       }
     }
 
