@@ -36,7 +36,7 @@ pipeline {
       }
       steps {
         sh 'docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD'
-        sh 'docker push ibrahimanis081/flask_application'
+        sh 'docker push ibrahimanis081/flaskapp'
       }
     }
 
