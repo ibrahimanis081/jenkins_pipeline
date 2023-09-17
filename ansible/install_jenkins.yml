@@ -1,59 +1,43 @@
 ---
-- name: Install Jenkins on Ubuntu
-  hosts: jenkins
+- name: Install Jenkins on Debian-based systems
+  hosts: control
+  gather_facts: false
   become: yes
   tasks:
+
     - name: Update APT package cache
       apt:
-        update_cache: yes
-      become: yes
+        update_cache: yes      
 
     - name: Install Java
       apt:
-        name: openjdk-8-jdk
-        state: present
-      become: yes
+        name: openjdk-11-jdk
+        state: present      
 
-    - name: Add Jenkins APT repository key
-      apt_key:
-        url: https://pkg.jenkins.io/debian/jenkins.io.key
-      become: yes
+    - name: Add Jenkins GPG key
+      ansible.builtin.shell: curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
 
-    - name: Add Jenkins APT repository
-      apt_repository:
-        repo: deb http://pkg.jenkins.io/debian-stable binary/
+    - name: Add Jenkins repository to sources
+      ansible.builtin.lineinfile:
+        path: /etc/apt/sources.list.d/jenkins.list
+        line: 'deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/'
+        create: yes
         state: present
-      become: yes
+
+    - name: Update package manager cache
+      ansible.builtin.apt:
+        update_cache: yes
+
+    - name: Install Jenkins
+      ansible.builtin.apt:
+        name: jenkins
+        state: present
 
     - name: Update APT package cache again
       apt:
-        update_cache: yes
-      become: yes
-
-    - name: Install Jenkins
-      apt:
-        name: jenkins
-        state: present
-      become: yes
+        update_cache: yes      
 
     - name: Start Jenkins service
       systemd:
         name: jenkins
         state: started
-      become: yes
-
-    - name: Enable Jenkins service on boot
-      systemd:
-        name: jenkins
-        enabled: yes
-      become: yes
-
-    - name: Print initial Jenkins unlock key
-      command: "cat /var/lib/jenkins/secrets/initialAdminPassword"
-      register: jenkins_admin_password
-      become: yes
-      changed_when: false
-
-    - name: Display Jenkins unlock key
-      debug:
-        var: jenkins_admin_password.stdout_lines[0]

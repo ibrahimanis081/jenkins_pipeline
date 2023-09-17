@@ -1,6 +1,7 @@
 ---
 - name: Install Docker and add user to Docker group
   hosts: control
+  gather_facts: false
   become: yes
 
   tasks:
