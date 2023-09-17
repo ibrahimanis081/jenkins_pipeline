@@ -31,7 +31,7 @@ pipeline {
 
     stage('Push') {
       steps {
-        sh 'docker login -u ${env.DOCKERHUB_USER} -p ${env.DOCKERHUB_PASSWORD}'
+        sh 'docker login -u "${env.DOCKERHUB_USER}" -p "${env.DOCKERHUB_PASSWORD}"'
         sh 'docker push ibrahimanis081/flaskapp'
       }
     }
