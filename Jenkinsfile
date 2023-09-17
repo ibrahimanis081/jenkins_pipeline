@@ -29,5 +29,16 @@ pipeline {
       }
     }
 
+    stage('Push') {
+      environment {
+        DOCKERHUB_USER = 'ibrahimanis081@gmail.com'
+        DOCKERHUB_PASSWORD = 'Muhammadanees71@'
+      }
+      steps {
+        sh 'docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD'
+        sh 'docker push ibrahimanis081/flask_application'
+      }
+    }
+
   }
 }
