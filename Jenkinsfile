@@ -23,7 +23,7 @@ pipeline {
     stage('Build Image') {
       steps {
         dir(path: 'app') {
-          sh 'docker build -t flaskapp .'
+          sh 'docker build -t ibrahimanis081/flaskapp .'
         }
 
       }
