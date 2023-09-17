@@ -38,7 +38,7 @@ pipeline {
 
   }
   environment {
-    DOCKERHUB_USER = 'ibrahimanis081'
-    DOCKERHUB_PASSWORD = 'Muhammadanees71@'
+    DOCKERHUB_USER = 'credentials(\'dockerhub_username\')'
+    DOCKERHUB_PASSWORD = 'credentials(\'dockerhub_password\')'
   }
 }
