@@ -38,7 +38,7 @@ pipeline {
 
   }
   environment {
-    DOCKERHUB_USER = 'ibrahimanis081@gmail.com'
-    DOCKERHUB_PASSWORD = 'Muhammadanees71@'
+    DOCKERHUB_USER = '____________'
+    DOCKERHUB_PASSWORD = '___________'
   }
 }

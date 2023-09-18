@@ -4,7 +4,7 @@ from app import app
 class TestApp(unittest.TestCase):
 
     def setUp(self):
-        # Create a test client
+        
         self.app = app.test_client()
         self.app.testing = True
 
