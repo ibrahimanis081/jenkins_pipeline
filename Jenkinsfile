@@ -9,36 +9,36 @@ pipeline {
 
     stage('Test App') {
       steps {
-        dir(path: 'app') {
-          sh 'ls -la'
-          sh 'python3 -m venv .venv --without-pip --system-site-packages && . /var/lib/jenkins/workspace/jenkins_pipeline_main/app/.venv/bin/activate'
-          sh 'pip install -r requirements.txt'
-          sh '''python3 -m unittest test_app.py
-'''
-        }
-
+        sh 'cd app'
+        sh 'ls -la'
+        sh 'python3 -m venv .venv --without-pip --system-site-packages && . /var/lib/jenkins/workspace/jenkins_pipeline_main/app/.venv/bin/activate'
+        sh 'pip install -r requirements.txt'
+        sh 'python3 -m unittest test_app.py'
+        
       }
     }
-
-    stage('Build Image') {
-      steps {
-        dir(path: 'app') {
-          sh 'docker build -t ibrahimanis081/flaskapp .'
-        }
-
-      }
-    }
-
-    stage('Push') {
-      steps {
-        sh 'docker login -u "${env.DOCKERHUB_USER}" -p "${env.DOCKERHUB_PASSWORD}"'
-        sh 'docker push ibrahimanis081/flaskapp'
-      }
-    }
-
-  }
-  environment {
-    DOCKERHUB_USER = '____________'
-    DOCKERHUB_PASSWORD = '___________'
   }
 }
+
+//     stage('Build Image') {
+//       steps {
+//         dir(path: 'app') {
+//           sh 'docker build -t ibrahimanis081/flaskapp .'
+//         }
+
+//       }
+//     }
+
+//     stage('Push') {
+//       steps {
+//         sh 'docker login -u "${env.DOCKERHUB_USER}" -p "${env.DOCKERHUB_PASSWORD}"'
+//         sh 'docker push ibrahimanis081/flaskapp'
+//       }
+//     }
+
+//   }
+//   environment {
+//     DOCKERHUB_USER = '____________'
+//     DOCKERHUB_PASSWORD = '___________'
+//   }
+// }
