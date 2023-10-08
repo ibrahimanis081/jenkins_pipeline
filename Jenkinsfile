@@ -11,7 +11,9 @@ pipeline {
       steps {
         sh 'cd app'
         sh 'ls -la'
-        sh 'python3 -m venv .venv --without-pip --system-site-packages && . /var/lib/jenkins/workspace/jenkins_pipeline_main/app/.venv/bin/activate'
+        sh 'python3 -m venv .venv'
+        sh 'ls -a'
+        sh 'source .venv/bin/activate'
         sh 'pip install -r requirements.txt'
         sh 'python3 -m unittest test_app.py'
         
