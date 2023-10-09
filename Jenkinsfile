@@ -24,7 +24,6 @@ pipeline {
     stage('Build Image') {
       steps {
         dir('app') {
-          sh 'ls -la'
           sh 'docker build -t ibrahimanis081/flaskapp .'
           }
         }
