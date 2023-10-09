@@ -16,7 +16,7 @@ pipeline {
           sh '. .venv/bin/activate'
           sh 'pip install -r requirements.txt'
           sh 'python3 -m unittest test_app.py'
-          sh 'echo buildno${BUILD_ID}'
+          
           }
         
         }
