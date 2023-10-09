@@ -12,11 +12,12 @@ pipeline {
         dir ('app') {
           sh 'ls -la'
           sh 'python3 -m venv .venv'
+          sh 'ls -la'
           sh 'source .venv/bin/activate'
           sh 'pip install -r requirements.txt'
           sh 'python3 -m unittest test_app.py'
-
-        }
+          }
+        
 
       
       }
