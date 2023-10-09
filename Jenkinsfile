@@ -24,7 +24,7 @@ pipeline {
     stage('Build Image') {
       steps {
         dir('app') {
-          sh 'docker build -t ibrahimanis081/flaskapp${BUILD_ID}'
+          sh 'docker build ibrahimanis081/flaskapp .'
           }
         }
       }
@@ -49,6 +49,7 @@ pipeline {
 
 //   }
 //   environment {
+ // :${BUILD_ID}
 //     DOCKERHUB_USER = '____________'
 //     DOCKERHUB_PASSWORD = '___________'
 //   }
