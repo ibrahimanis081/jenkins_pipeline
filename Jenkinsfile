@@ -19,18 +19,17 @@ pipeline {
           sh 'echo buildno${BUILD_ID}'
           }
         
+        }
+      }
     stage('Build Image') {
       steps {
         dir('app') {
           sh 'docker build -t ibrahimanis081/flaskapp${BUILD_ID}'
+          }
         }
       }
     }
-      
-      }
-    }
   }
-}
 
 //     stage('Build Image') {
 //       steps {
