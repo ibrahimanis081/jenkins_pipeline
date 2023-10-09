@@ -10,7 +10,6 @@ pipeline {
     stage('Test App') {
       steps {
         dir ('app') {
-          sh 'ls -la'
           sh 'python3 -m venv .venv'
           sh '. .venv/bin/activate'
           sh 'pip install -r requirements.txt'
@@ -30,7 +29,7 @@ pipeline {
     }
   }
 
-//     stage('Build Image') {
+
 //       steps {
 //         dir(path: 'app') {
 //           sh 'docker build -t ibrahimanis081/flaskapp .'
