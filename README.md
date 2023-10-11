@@ -17,7 +17,7 @@ Pipeline Steps:
 * Building: Upon successful testing, the code is built, packaged, and prepared for deployment.
 * Docker Image Creation: The application is containerized into a Docker image.
 * Docker Image Push: The Docker image is pushed to DockerHub, making it accessible for deployment in various environments.
-* Deployment: (to be done) The Docker image to be deployed to kubernetes through argocd.
+* Deployment: The Docker image is deployed to kubernetes through argocd. https://github.com/ibrahimanis081/flask-argocd/tree/main
 
 
 ### Built With
